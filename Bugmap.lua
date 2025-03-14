@@ -177,7 +177,7 @@ onTalk(function(name, level, mode, text, channelId, pos)
   if (name ~= 'Gate Keaper') then return; end              
   if (mode ~= 51) then return; end
   -- Ajustando a verificação de texto
-  if (text:find('Hi ' .. player:getName() .. 'Bem vindo a Bordo da estação espacial da Capsule Corporation, {name}. Para onde você deseja  {viajar}?')) then 
+  if (text:find('Bem vindo a bordo da estação espacial da Capsule Corporation, ' .. player:getName() .. '. Para onde você deseja  {viajar}?')) then 
       navedbo.show();
   else
       navedbo.close();
