@@ -1,93 +1,189 @@
-local bugMapMobile = {}
-
-local cursorWidget = g_ui.getRootWidget():recursiveGetChildById('pointer')
-if not cursorWidget then
-    return
-end
-
-local initialPos = {
-    x = cursorWidget:getPosition().x / cursorWidget:getWidth(),
-    y = cursorWidget:getPosition().y / cursorWidget:getHeight()
-}
-
-local availableKeys = {
-    Up = { 0, -6 },
-    Down = { 0, 6 },
-    Left = { -7, 0 },
-    Right = { 7, 0 },
-    W = { 0, -5 },
-    E = { 3, -3 },
-    D = { 5, 0 },
-    C = { 3, 3 },
-    S = { 0, 5 },
-    Z = { -3, 3 },
-    A = { -5, 0 },
-    Q = { -3, -3 }
-}
-
-bugMapMobile.directions = availableKeys
-
-local function checkPos(x, y)
-    local player = g_game.getLocalPlayer()
-    if not player then return false end
-
-    local xyz = player:getPosition()
-    xyz.x = xyz.x + x
-    xyz.y = xyz.y + y
+local windowUI = setupUI([[
+MainWindow
+  id: main
+  !text: tr('Nave By Guizin')
+  size: 230 310
+  scrollable: true
     
-    local tile = g_map.getTile(xyz)
-    if tile then
-        return g_game.use(tile:getTopUseThing())
-    end
-    return false
+  ScrollablePanel
+    id: TpList
+    anchors.top: parent.top
+    anchors.left: parent.left
+    size: 190 225
+    vertical-scrollbar: mainScroll
+
+    Button
+      !text: tr('Earth')
+      anchors.top: parent.top
+      anchors.left: parent.left
+      width: 165
+
+    Button
+      !text: tr('Premia')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Kanassa')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Ruudese')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+    Button
+      !text: tr('City 17')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Vegeta')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Tsufur')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Yardratto')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('M2')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Zelta')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Gardia')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Lude')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Gelbo')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Tritek')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+
+    Button
+      !text: tr('CC21')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+  VerticalScrollBar  
+    id: mainScroll
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    step: 48
+    pixels-scroll: true
+    
+  Button
+    id: closeButton
+    !text: tr('Close')
+    font: cipsoftFont
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    size: 45 21
+    margin-top: 15
+    margin-right: 15
+
+]], g_ui.getRootWidget());
+windowUI:hide();
+
+navedbo = {};
+navedbo.macro = macro(100, function() end);
+local MainPanel = windowUI.main;
+local TpList = windowUI.TpList;
+
+navedbo.close = function()
+  windowUI:hide()
+  NPC.say('bye');
 end
 
-function bugMapMobile.logic()
-    local player = g_game.getLocalPlayer()
-    if not player then return end
+navedbo.show = function()
+    windowUI:show();
+    windowUI:raise();
+    windowUI:focus();
+end
 
-    local pos = player:getPosition()
-    if not pos then return end
+windowUI.closeButton.onClick = function()
+    navedbo.close();
+end
 
-    local keypadPos = {
-        x = cursorWidget:getPosition().x / cursorWidget:getWidth(),
-        y = cursorWidget:getPosition().y / cursorWidget:getHeight()
-    }
+navedbo.tpToCity = function(city)
+    NPC.say(city);
+    schedule(500, function()
+        NPC.say('yes');
+    end);
+end
 
-    local diffPos = {
-        x = initialPos.x - keypadPos.x,
-        y = initialPos.y - keypadPos.y
-    }
 
-    if math.abs(diffPos.y) < 0.46 then
-        if diffPos.x > 0 then
-            checkPos(availableKeys.Left[1], availableKeys.Left[2])
-        elseif diffPos.x < 0 then
-            checkPos(availableKeys.Right[1], availableKeys.Right[2])
-        end
-    elseif math.abs(diffPos.x) < 0.46 then
-        if diffPos.y > 0 then
-            checkPos(availableKeys.Up[1], availableKeys.Up[2])
-        elseif diffPos.y < 0 then
-            checkPos(availableKeys.Down[1], availableKeys.Down[2])
-        end
+for i, child in pairs(TpList:getChildren()) do
+    child.onClick = function()
+        navedbo.tpToCity(child:getText())
     end
 end
 
-macro(1, "Bug Map Mobile", function()
-    bugMapMobile.logic()
+onTalk(function(name, level, mode, text, channelId, pos)
+  if (navedbo.macro.isOff()) then return; end
+  if (name ~= 'Gate Keaper') then return; end              
+  if (mode ~= 51) then return; end
+  if (text:find('Hello ' .. player:getName() .. 'Bem vindo a Bordo da estação espacial da Capsule Corporation, {name}. Para onde você deseja  {viajar}?')) then 
+      navedbo.show();
+  else
+      navedbo.close();
+  end
+end);
 
-    if modules.corelib.g_keyboard.isKeyPressed('numpad8') then
-        checkPos(availableKeys.W[1], availableKeys.W[2])
-    elseif modules.corelib.g_keyboard.isKeyPressed('numpad6') then
-        checkPos(availableKeys.D[1], availableKeys.D[2])
-    elseif modules.corelib.g_keyboard.isKeyPressed('numpad2') then
-        checkPos(availableKeys.S[1], availableKeys.S[2])
-    elseif modules.corelib.g_keyboard.isKeyPressed('numpad4') then
-        checkPos(availableKeys.A[1], availableKeys.A[2])
+onKeyDown(function(keys)
+    if (keys == 'Escape' and windowUI:isVisible())  then
+        navedbo.close();
     end
-end)
-
-local icon = addIcon("BugMap", { item = 10610, text = "BugMap" }, macro)
-icon:breakAnchors()
-icon:move(10, 100)
+end);
