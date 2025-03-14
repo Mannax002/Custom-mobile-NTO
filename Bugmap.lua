@@ -38,6 +38,7 @@ MainWindow
       anchors.left: parent.left
       margin-top: 5
       width: 165
+
     Button
       !text: tr('City 17')
       anchors.top: prev.bottom
@@ -108,7 +109,6 @@ MainWindow
       margin-top: 5
       width: 165
 
-
     Button
       !text: tr('CC21')
       anchors.top: prev.bottom
@@ -137,8 +137,8 @@ MainWindow
 ]], g_ui.getRootWidget());
 windowUI:hide();
 
-navedbo = {};
-navedbo.macro = macro(100, function() end);
+local navedbo = {};
+navedbo.macro = macro(100, function() end);  -- Ajuste no macro
 local MainPanel = windowUI.main;
 local TpList = windowUI.TpList;
 
@@ -164,24 +164,27 @@ navedbo.tpToCity = function(city)
     end);
 end
 
-
+-- Corrigir a interação com os botões da lista de teletransporte
 for i, child in pairs(TpList:getChildren()) do
     child.onClick = function()
-        navedbo.tpToCity(child:getText())
+        navedbo.tpToCity(child:getText());  -- Ação quando um botão é clicado
     end
 end
 
+-- Função para tratar o evento de diálogo com o NPC
 onTalk(function(name, level, mode, text, channelId, pos)
   if (navedbo.macro.isOff()) then return; end
   if (name ~= 'Gate Keaper') then return; end              
   if (mode ~= 51) then return; end
-  if (text:find('Hello ' .. player:getName() .. 'Bem vindo a Bordo da estação espacial da Capsule Corporation, {name}. Para onde você deseja  {viajar}?')) then 
+  -- Ajustando a verificação de texto
+  if (text:find('Hi ' .. player:getName() .. 'Bem vindo a Bordo da estação espacial da Capsule Corporation, {name}. Para onde você deseja  {viajar}?')) then 
       navedbo.show();
   else
       navedbo.close();
   end
 end);
 
+-- Adicionando a função de fechar ao pressionar 'Escape'
 onKeyDown(function(keys)
     if (keys == 'Escape' and windowUI:isVisible())  then
         navedbo.close();
