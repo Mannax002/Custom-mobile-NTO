@@ -78,13 +78,13 @@ macro(1, "Bug Map Mobile", function()
     bugMapMobile.logic()
 
     if modules.corelib.g_keyboard.isKeyPressed('numpad8') then
-        checkPos(0, -5)
+        checkPos(availableKeys.W[1], availableKeys.W[2])
     elseif modules.corelib.g_keyboard.isKeyPressed('numpad6') then
-        checkPos(5, 0)
+        checkPos(availableKeys.D[1], availableKeys.D[2])
     elseif modules.corelib.g_keyboard.isKeyPressed('numpad2') then
-        checkPos(0, 5)
+        checkPos(availableKeys.S[1], availableKeys.S[2])
     elseif modules.corelib.g_keyboard.isKeyPressed('numpad4') then
-        checkPos(-5, 0)
+        checkPos(availableKeys.A[1], availableKeys.A[2])
     end
 end)
 
