@@ -1,7 +1,7 @@
 local windowUI = setupUI([[
 MainWindow
   id: main
-  !text: tr('Nave By Guizin')
+  !text: tr('Gate Keaper')
   size: 230 310
   scrollable: true
     
@@ -19,35 +19,7 @@ MainWindow
       width: 165
 
     Button
-      !text: tr('Premia')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
-      !text: tr('Kanassa')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
-      !text: tr('Ruudese')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
-      !text: tr('City 17')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
-      !text: tr('Vegeta')
+      !text: tr('M2')
       anchors.top: prev.bottom
       anchors.left: parent.left
       margin-top: 5
@@ -61,21 +33,20 @@ MainWindow
       width: 165
 
     Button
-      !text: tr('Yardratto')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
-      !text: tr('M2')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
       !text: tr('Zelta')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+    Button
+      !text: tr('Vegeta')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Namek')
       anchors.top: prev.bottom
       anchors.left: parent.left
       margin-top: 5
@@ -96,6 +67,34 @@ MainWindow
       width: 165
 
     Button
+      !text: tr('Premia')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('City 17')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Ruudese')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Kanassa')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
       !text: tr('Gelbo')
       anchors.top: prev.bottom
       anchors.left: parent.left
@@ -110,7 +109,21 @@ MainWindow
       width: 165
 
     Button
+      !text: tr('Rygol')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
       !text: tr('CC21')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Yardratto')
       anchors.top: prev.bottom
       anchors.left: parent.left
       margin-top: 5
@@ -137,56 +150,55 @@ MainWindow
 ]], g_ui.getRootWidget());
 windowUI:hide();
 
-local navedbo = {};
-navedbo.macro = macro(100, function() end);  -- Ajuste no macro
+TpMinoru = {};
+TpMinoru.macro = macro(100, function() end);
 local MainPanel = windowUI.main;
 local TpList = windowUI.TpList;
 
-navedbo.close = function()
+TpMinoru.close = function()
   windowUI:hide()
   NPC.say('bye');
 end
 
-navedbo.show = function()
+TpMinoru.show = function()
     windowUI:show();
     windowUI:raise();
     windowUI:focus();
 end
 
 windowUI.closeButton.onClick = function()
-    navedbo.close();
+    TpMinoru.close();
 end
 
-navedbo.tpToCity = function(city)
+TpMinoru.tpToCity = function(city)
     NPC.say(city);
     schedule(500, function()
         NPC.say('yes');
     end);
 end
 
--- Corrigir a interação com os botões da lista de teletransporte
+
 for i, child in pairs(TpList:getChildren()) do
     child.onClick = function()
-        navedbo.tpToCity(child:getText());  -- Ação quando um botão é clicado
+        TpMinoru.tpToCity(child:getText())
     end
 end
 
--- Função para tratar o evento de diálogo com o NPC
 onTalk(function(name, level, mode, text, channelId, pos)
-  if (navedbo.macro.isOff()) then return; end
+  if (TpMinoru.macro.isOff()) then return; end
   if (name ~= 'Gate Keaper') then return; end              
   if (mode ~= 51) then return; end
-  -- Ajustando a verificação de texto
-  if (text:find('Bem vindo a bordo da estação espacial da Capsule Corporation, ' .. player:getName() ..'. Para onde você deseja {viajar}?')) then 
-      navedbo.show();
+  if (text:find('Bem vindo a bordo da estação espacial da Capsule Corporation, ' .. player:getName() .. '. Para onde você deseja {viajar}?')) then 
+      TpMinoru.show();
   else
-      navedbo.close();
+      TpMinoru.close();
   end
 end);
 
--- Adicionando a função de fechar ao pressionar 'Escape'
 onKeyDown(function(keys)
     if (keys == 'Escape' and windowUI:isVisible())  then
-        navedbo.close();
+        TpMinoru.close();
     end
 end);
+
+
