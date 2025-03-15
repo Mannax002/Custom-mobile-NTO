@@ -82,7 +82,7 @@ MainWindow
 windowUI:hide();
 
 TpLtempo = {};
-TpLtempo.macro = macro(100, "TP L.Tempo", function() end);
+TpLtempo.macro = macro(100, function() end);
 local TpList = windowUI.TpList;
 
 TpLtempo.close = function()
