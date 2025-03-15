@@ -1,8 +1,7 @@
-setDefaultTab("Tools")
 local windowUI = setupUI([[
 MainWindow
   id: main
-  !text: tr('Gate Keaper')
+  !text: tr('Gate Keaper By Guizin')
   size: 230 310
   scrollable: true
     
@@ -41,6 +40,13 @@ MainWindow
       width: 165
     Button
       !text: tr('Vegeta')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
+      !text: tr('Namek')
       anchors.top: prev.bottom
       anchors.left: parent.left
       margin-top: 5
@@ -103,6 +109,13 @@ MainWindow
       width: 165
 
     Button
+      !text: tr('CC21')
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      margin-top: 5
+      width: 165
+
+    Button
       !text: tr('Yardratto')
       anchors.top: prev.bottom
       anchors.left: parent.left
@@ -131,7 +144,7 @@ MainWindow
 windowUI:hide();
 
 TpMinoru = {};
-TpMinoru.macro = macro(100, "TP", function() end);
+TpMinoru.macro = macro(100, function() end);
 local MainPanel = windowUI.main;
 local TpList = windowUI.TpList;
 
@@ -168,7 +181,7 @@ onTalk(function(name, level, mode, text, channelId, pos)
   if (TpMinoru.macro.isOff()) then return; end
   if (name ~= 'Gate Keaper') then return; end              
   if (mode ~= 51) then return; end
-  if (text:find('Bem vindo a bordo da estação espacial da Capsule Corporation, ' .. player:getName() .. '. Para onde você deseja {viajar}?')) then 
+  if (text:find('Bem vindo a bordo da estação espacial da Capsule Corporation, ' .. player:getName() .. ' Para onde você deseja {viajar}?')) then 
       TpMinoru.show();
   else
       TpMinoru.close();
