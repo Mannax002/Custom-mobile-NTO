@@ -1,3 +1,4 @@
+setDefaultTab("Tools")
 local windowUI = setupUI([[
 MainWindow
   id: main
@@ -151,7 +152,7 @@ MainWindow
 windowUI:hide();
 
 TpMinoru = {};
-TpMinoru.macro = macro(100, function() end);
+TpMinoru.macro = macro(100, "TP", function() end);
 local MainPanel = windowUI.main;
 local TpList = windowUI.TpList;
 
@@ -188,8 +189,7 @@ onTalk(function(name, level, mode, text, channelId, pos)
   if (TpMinoru.macro.isOff()) then return; end
   if (name ~= 'Gate Keaper') then return; end              
   if (mode ~= 51) then return; end
-    Eo Duuhzao ne Vida. Para onde você deseja viajar?
-  if (text:find('Bem vindo a bordo da estação')) then 
+  if (text:find('Bem vindo a bordo da estação espacial da Capsule Corporation, ' .. player:getName() .. '. Para onde você deseja {viajar}?')) then 
       TpMinoru.show();
   else
       TpMinoru.close();
@@ -201,5 +201,3 @@ onKeyDown(function(keys)
         TpMinoru.close();
     end
 end);
-
-
