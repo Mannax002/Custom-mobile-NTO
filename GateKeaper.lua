@@ -47,21 +47,7 @@ MainWindow
       width: 165
 
     Button
-      !text: tr('Namek')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
       !text: tr('Gardia')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
-      !text: tr('Lude')
       anchors.top: prev.bottom
       anchors.left: parent.left
       margin-top: 5
@@ -111,13 +97,6 @@ MainWindow
 
     Button
       !text: tr('Rygol')
-      anchors.top: prev.bottom
-      anchors.left: parent.left
-      margin-top: 5
-      width: 165
-
-    Button
-      !text: tr('CC21')
       anchors.top: prev.bottom
       anchors.left: parent.left
       margin-top: 5
