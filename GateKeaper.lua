@@ -3,7 +3,7 @@ local windowUI = setupUI([[
 MainWindow
   id: main
   !text: tr('Gate Keaper By Guizin')
-  size: 230 310
+  size: 280 350
   scrollable: true
     
   ScrollablePanel
