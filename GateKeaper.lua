@@ -188,7 +188,8 @@ onTalk(function(name, level, mode, text, channelId, pos)
   if (TpMinoru.macro.isOff()) then return; end
   if (name ~= 'Gate Keaper') then return; end              
   if (mode ~= 51) then return; end
-  if (text:find('Bem vindo a bordo da estação espacial da Capsule Corporation, ' .. player:getName() .. '. Para onde você deseja {viajar}?')) then 
+    Eo Duuhzao ne Vida. Para onde você deseja viajar?
+  if (text:find('Bem vindo a bordo da estação')) then 
       TpMinoru.show();
   else
       TpMinoru.close();
