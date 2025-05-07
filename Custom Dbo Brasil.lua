@@ -42,53 +42,51 @@ onTalk(function(name, level, mode, text, channelId, pos)
 	end
 end);
 FollowAttack = {
-	flags = { ignoreNonPathable = true, precision = 0, ignoreCreatures = true }
-  }
-  
-  -- Corrige a função para não modificar diretamente a posição original
-  FollowAttack.getDirection = function(pos, direction)
-	local newPos = {x = pos.x, y = pos.y, z = pos.z}
-	if direction == 0 then newPos.y = newPos.y - 1
-	elseif direction == 1 then newPos.x = newPos.x + 1
-	elseif direction == 2 then newPos.y = newPos.y + 1
-	elseif direction == 3 then newPos.x = newPos.x - 1
-	end
-	return newPos
-  end
-  
-  FollowAttack.Icon = addIcon("Follow Attack", {item=7657, text="Follow Attack"}, macro(1, function()
-	if not g_game.isAttacking() then return end
-  
-	local target = g_game.getAttackingCreature()
-	if not target or target:isPlayer() then return end
-  
-	local playerPos = pos()
-	local targetPosition = target:getPosition()
-  
-	-- Para de perseguir se já está na mesma posição
-	if getDistanceBetween(playerPos, targetPosition) == 0 then
-	  g_game.setChaseMode(0)
-	  return
-	end
-  
-	-- Se estiver ao lado, não faz nada
-	if getDistanceBetween(playerPos, targetPosition) <= 1 then return end
-  
-	local path = findPath(playerPos, targetPosition, 20, FollowAttack.flags)
-	if not path then return end
-  
-	local tileToUse = playerPos
-	for i, dir in ipairs(path) do
-	  if i > 6 then break end
-	  tileToUse = FollowAttack.getDirection(tileToUse, dir)
-	end
-  
-	local tile = g_map.getTile(tileToUse)
-	if tile and tile:getTopUseThing() then
-	  use(tile:getTopUseThing())
-	end
-  end));  
+  flags = { ignoreNonPathable = true, precision = 0, ignoreCreatures = true }
+}
 
+FollowAttack.getDirection = function(pos, direction)
+  local newPos = {x = pos.x, y = pos.y, z = pos.z}
+  if direction == 0 then newPos.y = newPos.y - 1
+  elseif direction == 1 then newPos.x = newPos.x + 1
+  elseif direction == 2 then newPos.y = newPos.y + 1
+  elseif direction == 3 then newPos.x = newPos.x - 1
+  end
+  return newPos
+end
+
+FollowAttack.Icon = addIcon("Follow Attack", {item=7657, text="Follow Attack"}, macro(1, function()
+  resetWalk() -- <- Corrige o erro de breakAnchors
+  
+  if not g_game.isAttacking() then return end
+
+  local target = g_game.getAttackingCreature()
+  if not target or target:isPlayer() then return end
+
+  local playerPos = pos()
+  local targetPos = target:getPosition()
+
+  if getDistanceBetween(playerPos, targetPos) == 0 then
+    g_game.setChaseMode(0)
+    return
+  end
+
+  if getDistanceBetween(playerPos, targetPos) <= 1 then return end
+
+  local path = findPath(playerPos, targetPos, 20, FollowAttack.flags)
+  if not path then return end
+
+  local tileToUse = playerPos
+  for i, dir in ipairs(path) do
+    if i > 6 then break end
+    tileToUse = FollowAttack.getDirection(tileToUse, dir)
+  end
+
+  local tile = g_map.getTile(tileToUse)
+  if tile and tile:getTopUseThing() then
+    use(tile:getTopUseThing())
+  end
+end));
 UI.Separator()
 
 setDefaultTab ('Tools')
