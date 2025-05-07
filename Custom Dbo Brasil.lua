@@ -814,14 +814,16 @@ onTalk(function(name, level, mode, text)
 	text = text:lower()
 	
 	local spells = comboConfig.actualCombo
-	for key, value in pairs(spells) do
-		local convertValue = value:lower():trim()
-		if convertValue == text then
-			storage.exhaustCombo[convertValue] = os.time() + comboConfig.times[key]
-			break
+	if type(spells) == 'table' then
+		for key, value in pairs(spells) do
+			local convertValue = value:lower():trim()
+			if convertValue == text then
+				storage.exhaustCombo[convertValue] = os.time() + comboConfig.times[key]
+				break
+			end
 		end
-	end
-end)
+	end)
+	
 
 vocationVerify = onTextMessage(function(mode, text)
 	text = text:lower()
