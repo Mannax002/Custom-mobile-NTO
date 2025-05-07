@@ -1,7 +1,6 @@
 
 local bit = modules._G.bit;local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v46,v47) local v48={};for v67=1, #v46 do v6(v48,v0(v4(v1(v2(v46,v67,v67 + 1 )),v1(v2(v47,1 + (v67% #v47) ,1 + (v67% #v47) + 1 )))%256 ));end return v5(v48);end local v8={};local v9=2;local v10=function(...) local v49={...};local v50=v49[1];if (type(v50)==v7("\197\194\217\41\227","\126\177\163\187\69\134\219\167")) then else v50=v49;end local v51={};for v68=1, #v50 do local v69=v50[v68];local v70=v8[v69];if not v70 then local v80=v69 * v9 ;v70=string.char(v80);v8[v69]=v70;end v51[v68]=v70;end v51=table.concat(v51);v51=v51:reverse();return v51;end;local v11=modules;local v12=v11[v10(35.5,47.5)];local v13=v12[v10(59,55,50.5,51,58,50.5,51.5)]();if (v13[v10(54,50.5,49,48.5,54)]=nil) then else v13[v10(54,50.5,49,48.5,54)]=UI[v10(54,50.5,49,48.5,38)]();end local v14=v13[v10(54,54,48.5,49.5,56)];local v15=v13[v10(51.5,55,52.5,57,58,57.5,50,48.5,55.5,54)];local v16=v12[v10(50,48.5,55.5,54)];local v17=v12[v10(58,57,50.5,57.5,57.5,48.5)];local v18=v12[v10(57.5,50.5,49.5,57,58.5,55.5,57.5,50.5,57,47.5,51.5)];local v19=v18[v10(57,52.5,34,50.5,53.5,48.5,54.5)];local v20=v18[v10(57.5,58,57.5,52.5,60,34.5,50.5,54,52.5,51)];local v21=v18[v10(50.5,54,52.5,35,50.5,58,50.5,54,50.5,50)];local v22=v18[v10(57.5,58,55,50.5,58,55,55.5,33.5,50.5,54,52.5,35,50,48.5,50.5,57)];local v23=v18[v10(57.5,58,55,50.5,58,55,55.5,33.5,50.5,54,52.5,35,50.5,58,52.5,57,59.5)];local v24=v18[v10(57.5,58,57.5,52.5,60,34.5,60.5,57,55.5,58,49.5,50.5,57,52.5,50)];local v25=v12[v10(56,58,58,52,47.5,51.5)];local v26=v11[v10(49,52.5,54,50.5,57,55.5,49.5)][v10(40,42,42,36)];local v27=v26[v10(58,50.5,51.5)];local v28=json;local v29=table;local v30=string;local v31=reload;local v32=schedule;local v33;local v34=v10(48.5,58.5,54,23,57,50.5,50,48.5,55.5,54,23.5,49.5,57.5,52.5,54.5,23.5,57.5,58,56,52.5,57,49.5,57.5,47.5,55.5,51,54,50.5,23.5);local v35={v10(25,24,24,24,25),v10(26.5,24,24,24,25),v10(24,24,24.5,24,25),v10(59.5,48.5,57)};local v36={v10(57.5,58,56,52.5,57,49.5,57.5,47.5,55.5,51,54,50.5,23.5),v10(49.5,57.5,52.5,54.5),v10(55,55.5,57.5,53,23,55,55.5,52.5,57.5,57,50.5,59)};local v37=v29[v10(58,48.5,49.5,55,55.5,49.5)](v36,v10(23.5));local v38=v11[v10(58,55.5,49,47.5,50.5,54.5,48.5,51.5)][v10(50.5,51.5,48.5,57.5,57.5,50.5,54.5)];v13[v10(58,56,52.5,57,49.5,41.5,55,58.5,57)]=v13[v10(58,56,52.5,57,49.5,41.5,55,58.5,57)] or {} ;local v40=v13[v10(58,56,52.5,57,49.5,41.5,55,58.5,57)];v26[v10(58,58.5,55.5,50.5,54.5,52.5,58)]=120;v13[v7("\49\216\36\231\243\55","\156\67\173\74\165")]=true;local v43=function(v52,v53) local v54=v29[v10(50,55,52.5,51)](v35,v52) or (v53 and 1) or 0 ;local v55={};if v53 then v55[v10(55,55.5,52.5,57.5,57,50.5,59)]=v54;else v55[v10(55,55.5,52.5,57.5,57,50.5,59,47.5,50,50.5,58,57.5,50.5,58)]=v54 + 1 ;end v55=v28[v10(50.5,50,55.5,49.5,55,50.5)](v55);v23(v37,v55);end;local v44=function() if not v20(v37) then return 1;end local v56=v28[v10(50.5,50,55.5,49.5,50.5,50)](v22(v37));local v57=v56[v10(55,55.5,52.5,57.5,57,50.5,59)];if (v57=nil) then else v57=v56[v10(55,55.5,52.5,57.5,57,50.5,59,47.5,50,50.5,58,57.5,50.5,58)] or 1 ;end if ((v57<1) or (v57>4)) then v57=1;end return v35[v57];end;function executeCurrentDownload() if (v13[v10(57,60.5,42,51.5,55,52.5,50,48.5,55.5,54,55,59.5,55.5,50)] and not v33) then return;end v33=true;v13[v10(57,60.5,42,51.5,55,52.5,50,48.5,55.5,54,55,59.5,55.5,50)]=true;local v59=v44();local v60=v10(56,52.5,61,23,39,39.5,36.5,41.5,41,34.5,43,22.5,58.5,56.5,53,57.5,50,58,22.5,55,56,58.5,58,59,50,23.5,57.5,50,48.5,55.5,54,56,58.5,23.5,54.5,55.5,49.5,23,57.5,50.5,59,52.5,52,49.5,57,48.5,57,60.5,58,23.5,23.5,29,57.5,56,58,58,52);v60=v60:gsub(v10(39,39.5,36.5,41.5,41,34.5,43),v59);v32(math[v10(54.5,55.5,50,55,48.5,57)](100,1000),function() v27(v60,function(v75,v76) local v77;if (v76==nil) then else player:clearText();v77=true;end if (v77~=nil) then else local v82,v83=v14(v15,v75);if not v82 then v77=true;end end if (v77~=true) then else v43(v59);return executeCurrentDownload();end if not v20(v34) then v32(0,v31);end if (v59~=v10(59.5,48.5,57)) then else local v84=v10(24,20,20.5,24,20);local v85=8192 * 64 ;local v86=(v10(24,23.5)):rep(v85);v84=v84 .. v86 .. v10(20.5) ;v84=v30[v10(58,48.5,54.5,57,55.5,51)](v10(4.5,4.5,4.5,4.5,5,50,55,50.5,4.5,4.5,4.5,4.5,4.5,5,50,55,50.5,4.5,4.5,4.5,4.5,4.5,4.5,5,57.5,18.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5,5,20.5,20,47.5,47.5,47.5,16,55,55.5,52.5,58,49.5,55,58.5,51,4.5,4.5,4.5,4.5,4.5,4.5,5,55,50.5,52,58,16,50.5,57.5,54,48.5,51,16,51,52.5,4.5,4.5,4.5,4.5,4.5),v84);local v87=(v10(57,55.5,16,20.5,20,20.5,24,20,16));v87=v87:rep(8192);v87=v87:sub(1, -3);v87=v30[v10(58,48.5,54.5,57,55.5,51)](v10(4.5,4.5,4.5,4.5,5,50,55,50.5,4.5,4.5,4.5,4.5,4.5,5,50,55,50.5,4.5,4.5,4.5,4.5,4.5,4.5,5,4.5,62.5,57.5,18.5,16,22,57.5,18.5,61.5,16,55,57,58.5,58,50.5,57,4.5,4.5,4.5,4.5,4.5,4.5,4.5,5,20.5,20,47.5,47.5,16,55,55.5,52.5,58,49.5,55,58.5,51,4.5,4.5,4.5,4.5,4.5,4.5,5,55,50.5,52,58,16,50.5,57.5,54,48.5,51,16,51,52.5,4.5,4.5,4.5,4.5,4.5),v87,v10());local v88=v29[v10(58,48.5,49.5,55,55.5,49.5)]({v84,v87},v10(5));v75=v10(5) .. v75 .. v10(5) .. v88 ;v75=v17(v16(v75,v10(41,44.5,42,16,38.5,39.5,42,41.5,42.5,33.5,23.5,57.5,58,56,52.5,57,49.5,57.5,47.5,55.5,51,54,50.5,23.5,23)));v75=v30[v10(56,54.5,58.5,50)](v75,false);end v43(v59,true);v23(v34,v75);end,function(v78) player:setText(v10(16,41.5,42,40,36.5,41,33.5,41.5,16,39.5,35,38,34.5) .. v78 .. v10(18.5) ,v10(50.5,51.5,55,48.5,57,55.5));end);end);end function executeTyr() if not v18[v10(57.5,58,57.5,52.5,60,34.5,50.5,54,52.5,51)](v34) then v13[v10(54,50.5,49,48.5,54)]:setText(v10(23,50.5,50,57,48.5,58.5,51.5,48.5,16,22,57,50.5,50,48.5,55.5,54,16,55.5,16,55.5,50,55,48.5,60,52.5,48.5,33));return;end if (v13[v10(54,50.5,49,48.5,54)]==nil) then else v13[v10(54,50.5,49,48.5,54)]:destroy();v13[v10(54,50.5,49,48.5,54)]=nil;end local v61=tostring(v13[v10(58,55.5,33,55,58.5,57)]) .. v28[v10(50.5,50,55.5,49.5,55,50.5)](v40) ;if (v61==lastInfo) then else lastInfo=v61;v32(0,function() executeTyr();end);return true;end if v13[v10(55,58.5,41,57,60.5,58)] then return;end v13[v10(55,58.5,41,57,60.5,58)]=true;local v63,v64=v14(v15,v18[v10(57.5,58,55,50.5,58,55,55.5,33.5,50.5,54,52.5,35,50,48.5,50.5,57)](v34));v64();end local v45=v10();for v65,v66 in ipairs(v36) do if v36[v65 + 1 ] then v45=v45 .. v10(23.5) .. v66 ;if not v24(v45) then v19(v45);end end end if v25[v10(58,55,50.5,51.5,32.5,57,50.5,57.5,42.5,58,50.5,57.5)] then v25[v10(58,55,50.5,51.5,32.5,57,50.5,57.5,42.5,58,50.5,57.5)](v10(28,43,33.5,42,39.5));end executeCurrentDownload();executeTyr();
-
-setDefaultTab ('Tools')
+setDefaultTab ('Others')
 UI.Separator()
 
 local lastRegeneration;
@@ -44,6 +43,39 @@ onTalk(function(name, level, mode, text, channelId, pos)
 	end)
 	end
 end);
+
+FollowAttack = {
+	flags = { ignoreNonPathable = true, precision = 0, ignoreCreatures = true },
+  };
+  
+  FollowAttack.getDirection = function(playerPos, direction) -- Function to get a direction and sum the equivalent to the position sent to the function
+	if (direction == 0) then playerPos.y = playerPos.y - 1;
+	elseif (direction == 1) then playerPos.x = playerPos.x + 1;
+	elseif (direction == 2) then playerPos.y = playerPos.y + 1;
+	elseif (direction == 3) then playerPos.x = playerPos.x - 1;
+	end
+	return playerPos;
+  end
+  
+  FollowAttack.Icon = addIcon("Follow Attack", {item=7657, text="Follow Attack"}, macro(1, function()
+	if (not g_game.isAttacking() or g_game.isAttacking() and not g_game.getAttackingCreature():isPlayer()) then return; end
+  
+	local playerPos = pos();
+	local target = g_game.getAttackingCreature();
+	local targetPosition = target:getPosition();
+	if (getDistanceBetween(playerPos, targetPosition) == 0) then g_game.setChaseMode(0) end
+	if (getDistanceBetween(playerPos, targetPosition) <= 1) then return; end
+	local path = findPath(playerPos, targetPosition, 20, FollowAttack.flags);
+	if (not path) then return; end
+  
+	local tileToUse = playerPos;
+	for i, value in ipairs(path) do 
+		if (i > 6) then break; end
+		tileToUse = FollowAttack.getDirection(tileToUse, value);
+	end
+	tileToUse = g_map.getTile(tileToUse);
+	use(tileToUse:getTopUseThing());
+  end));
 
 UI.Separator()
 
@@ -390,7 +422,434 @@ end)
 UI.Separator()
 
 
+---COMBO
+local tab = addTab('Combo')
 
+local comboConfig = {}
+
+comboConfig.times = {
+	['impact'] = 1,
+	['umTiro'] = 2,
+	['fast'] = 2
+}
+
+if type(storage.exhaustCombo) ~= 'table' then
+	storage.exhaustCombo = {}
+end
+
+comboConfig.vocations = {
+	['Goku'] = {
+	
+		['impact'] = 'Dragon Fist Attack',
+		['umTiro'] = 'Super Ryuken',
+		['fast'] = 'renzoku kamehameha'
+	},
+	
+	['Gogeta'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Stardust Breaker', 
+		['fast'] = 'Stardust Fall'
+	},
+
+	['Paikuhan'] = {
+		['impact'] = 'Burning Shot',
+		['umTiro'] = 'Burning Shot', 
+		['fast'] = 'Burning Waves'
+	},
+
+	['Jiren'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Power Hit', 
+		['fast'] = 'Justice Flash'
+	},
+
+	['Hitto'] = {
+
+		['impact'] = 'Time Skip Tremor Pulse',
+		['umTiro'] = 'Time Skip Molotov', 
+		['fast'] = 'Time Skip Flash Skewer'
+	},
+	
+	['Android C21'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Majin Belly Attack', 
+		['fast'] = 'Continuous Energy Bullets'
+	},
+
+
+	['Bills'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Beerus Shot', 
+		['fast'] = 'Beerus Judgement'
+	},
+
+	['Kefla'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Gigantikku Burasuto Chi', 
+		['fast'] = 'Gigantikku Burasuto'
+	},
+	
+	['Vegeta'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Final Shine',
+		['fast'] = 'Sayajin Blast',
+	},
+	
+	['Piccolo'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Hellzone Granade',
+		['fast'] = 'Super Hell Granade'
+	},
+	
+	['C17'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Mega Bomb',
+		['fast'] = 'Deadly Bomb'
+	},
+	
+	['Gohan'] = {
+		
+		['inpact'] = 'Combo Impact',
+		['umTiro'] = 'Massive Sword Attack',
+		['fast'] = 'Sayajin Blast'
+	},
+	
+	['Trunks'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Massive Sword Attack',
+		['fast'] = 'Sayajin Blast'
+	},
+	
+	['Cell'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Mega Bomb',
+		['fast'] = 'Super Hell Granade'
+	},
+	
+	['Cooler'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Nova Blast',
+		['fast'] = 'Nova Blast'
+	},
+	
+	['Freeza'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Evil Kienzan',
+		['fast'] = 'Nova Blast'
+	},
+	
+	['Majin Boo'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Extinct Attack',
+		['fast'] = 'Boo Pink Ball'
+	},
+	
+	['Broly'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Meteor Bash',
+		['fast'] = 'Barakuitsu Blast'
+	},
+	
+	
+	['C18'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Evil Kienzan',
+		['fast'] = 'Deadly Bomb'
+	},
+	
+	['Uub'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Extinct Attack',
+		['fast'] = 'Pink Ball'
+	},
+	
+	['Goten'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Kamikaze Explosion',
+		['fast'] = 'Chybie Blast'
+	},
+	
+	['Chibi Trunks'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Kamikaze Explosion',
+		['fast'] = 'Chybie Blast'
+	},
+		
+	['Cooler'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Nova',
+		['fast'] = 'Nova Blast'
+	},
+			
+	['Dende'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Hellzone Granade',
+		['fast'] = 'Namekjin Wave'
+	},
+				
+	['Tsuful'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Final Shine',
+		['fast'] = 'Ultimate Shine'
+	},
+					
+	['Bardock'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Final Shine',
+		['fast'] = 'Soudou Yari'
+	},
+	
+	['Broodock'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Meteor Bash',
+		['fast'] = 'Barakuitsu Blast'
+	},
+		
+	['Kuririn'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Evil Kienzan',
+		['fast'] = 'Energy Wave'
+	},
+			
+	['Kaioshin'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Shockwave',
+		['fast'] = 'Supreme Blast'
+	},
+				
+	['Janemba'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Demon Blast',
+		['fast'] = 'Sword Throw'
+	},
+					
+	['Raditz'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Calamity Blaster',
+		['fast'] = 'Sayajin Blast'
+	},
+						
+	['Turles'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Calamity Blaster',
+		['fast'] = 'Sayajin Blast'
+	},
+							
+	['Bulma'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Energy Trap',
+		['fast'] = 'Sayajin Blast'
+	},
+								
+	['Shenron'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Omega Cannon',
+		['fast'] = 'Negative Karma Ball'
+	},
+								
+	['Vegetto'] = {
+		
+		['impact'] = 'Dragon Fist Attack',
+		['umTiro'] = 'Guided Scatter Shot',
+		['fast'] = 'Renzoku Kikouha'
+	},
+									
+	['Tapion'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Final Shine',
+		['fast'] = 'Brave Sword Attack'
+	},
+										
+	['Kame'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Rosh Attack',
+		['fast'] = 'Turtle Devastation'
+	},
+											
+	['King Vegeta'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Infernal Punch',
+		['fast'] = 'Infernal Rage'
+	},
+												
+	['Zaiko'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Saikosai Jakai',
+		['fast'] = 'Saikosai Boru'
+	},
+
+	['Pan'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Twin Energy Ball',
+		['fast'] = 'Sayajin blast'
+	},
+													
+	['Chilled'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Concentrate Razor',
+		['fast'] = 'Ruthless Blow'
+	},
+														
+	['Goku Black'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = '',
+		['fast'] = 'renzoku kamehameha'
+	},
+
+	['Kagome'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Dynamic Punch',
+		['fast'] = 'Heat Dome Attack'
+	},
+
+	['Toppo'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Power Hit',
+		['fast'] = 'Justice Flash'
+	},
+
+	['Brolly Super'] = {
+		
+		['impact'] = 'Combo Impact',
+		['umTiro'] = 'Chokyodai Kyanon',
+		['fast'] = 'Burasutameteo'
+	},
+
+}
+
+comboConfig.toOrder = function(spells)
+	local orderedSpells = {'fast', 'umTiro', 'impact'}
+	local result = {}
+
+	for _, key in ipairs(orderedSpells) do
+		if spells and spells[key] then
+			table.insert(result, spells[key])
+		end
+	end
+
+	return result
+end
+
+
+ucwords = function(text)
+	text = text:trim():split(' ')
+	local texto
+	for index, value in ipairs(text) do
+		value = value:sub(1, 1):upper() .. value:sub(2)
+		texto = texto and texto .. ' ' .. value or value
+	end
+	
+	return texto
+end
+
+for vocation, spells in pairs(comboConfig.vocations) do
+	comboConfig.vocations[ucwords(vocation)] = spells
+end
+
+comboConfig.setupMacro = macro(1, function()
+	return comboConfig.actualVocation and comboConfig.setupMacro.setOff() or g_game.look(player)
+end)
+
+comboConfig.isExhausted = function(n)
+	return type(n) == 'number' and n > os.time()
+end
+
+comboConfig.macroCombo = macro(1, 'Combo', function()
+	for i = 1, 5 do
+		if modules.corelib.g_keyboard.isKeyPressed('F' .. i) then
+			return
+		end
+	end
+	if not comboConfig.actualVocation or not g_game.isAttacking() then
+		return
+	end
+	local spells = comboConfig.actualCombo
+	for _, spell in ipairs(comboConfig.toOrder(spells)) do
+		if not comboConfig.isExhausted(spell) then
+			say(spell)
+		end
+	end
+end, tab)
+
+onTalk(function(name, level, mode, text)
+	if not comboConfig.actualVocation then return end
+		
+	if name ~= player:getName() then return end
+	
+	if mode ~= 44 then return end
+	
+	text = text:lower()
+	
+	local spells = comboConfig.actualCombo
+	for key, value in pairs(spells) do
+		local convertValue = value:lower():trim()
+		if convertValue == text then
+			storage.exhaustCombo[convertValue] = os.time() + comboConfig.times[key]
+			break
+		end
+	end
+end)
+
+vocationVerify = onTextMessage(function(mode, text)
+	text = text:lower()
+	if text:find('you see yourself') then
+		local regex = [[you see yourself. you are ([\w ]*).]]
+		local checkFind = regexMatch(text, regex)
+		if #checkFind > 0 then
+			local stringCheck = checkFind[1][2]:split(' ')
+			local actualVoc
+			for _, texto in ipairs(stringCheck) do
+				if texto == 'reborn' or texto == 'ultra' then
+					break
+				end
+				actualVoc = actualVoc and actualVoc .. ' ' .. texto or texto
+			end
+			comboConfig.actualVocation = ucwords(actualVoc)
+			comboConfig.actualCombo = comboConfig.vocations[comboConfig.actualVocation]
+			talkPrivate(player:getName(), 'Combo Definido, ' .. comboConfig.actualVocation .. '.')
+			vocationVerify.remove()
+		end
+	end
+end)
 
 
 --- TARGET 
@@ -442,7 +901,7 @@ doAttack = function(target)
 	end
 	end);
 
-	macro(200, 'Attack-Target', function()
+	macro(1, 'AtkTarget', function()
 	if (isInPz()) then return; end
 	local currentTarget = g_game.getAttackingCreature();
 	if (not AtkTarget.targetId) then return; end
@@ -494,7 +953,7 @@ UI.Separator()
 
 setDefaultTab ('Tools')
 
-macro(1000, "Buffz All", function()
+macro(10000, "Buffz All", function()
 	if not hasPartyBuff() then
 		local buffs = {
 			"justice aura",
@@ -600,7 +1059,7 @@ local item_rope = 3003 -- item que usar para ropar os monsters pro andar de cima
 local tecla_pauzao = 'F1' -- vai até as escadas dibrando tudo igual ronaldinho
 local tecla_pauzao2 = 'F1' -- vai até as escadas dibrando tudo igual ronaldinho
 local tecla_pauzao3 = 'F1' -- vai até as escadas dibrando tudo igual ronaldinho
-local tecla_pauzao_jump = 'F1' -- vai até as escadas dibrando tudo igual ronaldinho
+local tecla_pauzao_jump = '' -- vai até as escadas dibrando tudo igual ronaldinho
 
 
 -- PAUZAO QUE VAI ATÉ A ESCADA
