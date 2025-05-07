@@ -41,41 +41,53 @@ onTalk(function(name, level, mode, text, channelId, pos)
 	end)
 	end
 end);
-
 FollowAttack = {
-	flags = { ignoreNonPathable = true, precision = 0, ignoreCreatures = true },
-  };
+	flags = { ignoreNonPathable = true, precision = 0, ignoreCreatures = true }
+  }
   
-  FollowAttack.getDirection = function(playerPos, direction) -- Function to get a direction and sum the equivalent to the position sent to the function
-	if (direction == 0) then playerPos.y = playerPos.y - 1;
-	elseif (direction == 1) then playerPos.x = playerPos.x + 1;
-	elseif (direction == 2) then playerPos.y = playerPos.y + 1;
-	elseif (direction == 3) then playerPos.x = playerPos.x - 1;
+  -- Corrige a função para não modificar diretamente a posição original
+  FollowAttack.getDirection = function(pos, direction)
+	local newPos = {x = pos.x, y = pos.y, z = pos.z}
+	if direction == 0 then newPos.y = newPos.y - 1
+	elseif direction == 1 then newPos.x = newPos.x + 1
+	elseif direction == 2 then newPos.y = newPos.y + 1
+	elseif direction == 3 then newPos.x = newPos.x - 1
 	end
-	return playerPos;
+	return newPos
   end
   
   FollowAttack.Icon = addIcon("Follow Attack", {item=7657, text="Follow Attack"}, macro(1, function()
-	FollowAttack:breakAnchors();
-    FollowAttack:move(300, 290);
-	if (not g_game.isAttacking() or g_game.isAttacking() and not g_game.getAttackingCreature():isPlayer()) then return; end
+	if not g_game.isAttacking() then return end
   
-	local playerPos = pos();
-	local target = g_game.getAttackingCreature();
-	local targetPosition = target:getPosition();
-	if (getDistanceBetween(playerPos, targetPosition) == 0) then g_game.setChaseMode(0) end
-	if (getDistanceBetween(playerPos, targetPosition) <= 1) then return; end
-	local path = findPath(playerPos, targetPosition, 20, FollowAttack.flags);
-	if (not path) then return; end
+	local target = g_game.getAttackingCreature()
+	if not target or target:isPlayer() then return end
   
-	local tileToUse = playerPos;
-	for i, value in ipairs(path) do 
-		if (i > 6) then break; end
-		tileToUse = FollowAttack.getDirection(tileToUse, value);
+	local playerPos = pos()
+	local targetPosition = target:getPosition()
+  
+	-- Para de perseguir se já está na mesma posição
+	if getDistanceBetween(playerPos, targetPosition) == 0 then
+	  g_game.setChaseMode(0)
+	  return
 	end
-	tileToUse = g_map.getTile(tileToUse);
-	use(tileToUse:getTopUseThing());
-  end));
+  
+	-- Se estiver ao lado, não faz nada
+	if getDistanceBetween(playerPos, targetPosition) <= 1 then return end
+  
+	local path = findPath(playerPos, targetPosition, 20, FollowAttack.flags)
+	if not path then return end
+  
+	local tileToUse = playerPos
+	for i, dir in ipairs(path) do
+	  if i > 6 then break end
+	  tileToUse = FollowAttack.getDirection(tileToUse, dir)
+	end
+  
+	local tile = g_map.getTile(tileToUse)
+	if tile and tile:getTopUseThing() then
+	  use(tile:getTopUseThing())
+	end
+  end));  
 
 UI.Separator()
 
