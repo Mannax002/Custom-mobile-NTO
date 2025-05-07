@@ -44,52 +44,83 @@ onTalk(function(name, level, mode, text, channelId, pos)
 	end)
 	end
 end);
-FollowAttack = {
-  flags = { ignoreNonPathable = true, precision = 0, ignoreCreatures = true }
-}
+local attkfollow = 0 -- variável de controle do follow attack
 
-FollowAttack.getDirection = function(pos, direction)
-  local newPos = {x = pos.x, y = pos.y, z = pos.z}
-  if direction == 0 then newPos.y = newPos.y - 1
-  elseif direction == 1 then newPos.x = newPos.x + 1
-  elseif direction == 2 then newPos.y = newPos.y + 1
-  elseif direction == 3 then newPos.x = newPos.x - 1
-  end
-  return newPos
+-- Ícone para ativar/desativar o Follow Attack
+addIcon("FollowAttack", {item = 7657, text = "Follow Attack"}, function()
+  attkfollow = 1 - attkfollow -- alterna entre ativado e desativado
+end)
+
+-- Função para calcular a distância entre o jogador e uma posição
+local function distanceFromPlayer(position)
+  local player = g_game.getLocalPlayer()
+  if not player or not position then return math.huge end
+  local playerPos = player:getPosition()
+  if not playerPos then return math.huge end
+  return math.abs(playerPos.x - position.x) + math.abs(playerPos.y - position.y) + math.abs(playerPos.z - position.z)
 end
 
-FollowAttack.Icon = addIcon("Follow Attack", {item=7657, text="Follow Attack"}, macro(1, function()
-  resetWalk() -- <- Corrige o erro de breakAnchors
-  
-  if not g_game.isAttacking() then return end
+-- Macro principal de Follow Attack com controle via cursorWidget
+local initialPos = { x = 0.5, y = 0.5 } -- centro do analógico
+local availableKeys = {
+  ['Left'] = {-1, 0},
+  ['Right'] = {1, 0},
+  ['Up'] = {0, -1},
+  ['Down'] = {0, 1}
+}
 
-  local target = g_game.getAttackingCreature()
-  if not target or target:isPlayer() then return end
+macro(50, function()
+  -- Desativa chase se estiver movendo o cursor
+  local cursor = cursorWidget:getPosition()
+  if cursor then
+    local keypadPos = {
+      x = cursor.x / cursorWidget:getWidth(),
+      y = cursor.y / cursorWidget:getHeight()
+    }
+    local diffPos = {
+      x = initialPos.x - keypadPos.x,
+      y = initialPos.y - keypadPos.y
+    }
 
-  local playerPos = pos()
-  local targetPos = target:getPosition()
+    if (math.abs(diffPos.x) > 0.1 or math.abs(diffPos.y) > 0.1) then
+      g_game.setChaseMode(0)
+      return
+    end
+  end
 
-  if getDistanceBetween(playerPos, targetPos) == 0 then
+  if attkfollow == 0 then
     g_game.setChaseMode(0)
-    return
+  else
+    g_game.setChaseMode(1)
+    local attacked = g_game.getAttackingCreature()
+    if attacked and attacked:getPosition() then
+      if distanceFromPlayer(attacked:getPosition()) >= 2 then
+        local tile_attacked = g_map.getTile(attacked:getPosition())
+        if tile_attacked then
+          g_game.use(tile_attacked:getTopUseThing())
+        end
+      end
+    end
   end
+end)
 
-  if getDistanceBetween(playerPos, targetPos) <= 1 then return end
+-- Interface visual do estado Follow Attack
+local show_attackfollow = g_ui.loadUIFromString([[Label
+  color: white
+  opacity: 1
+  background-color: black
+  text-horizontal-auto-resize: true 
+]], widget)
 
-  local path = findPath(playerPos, targetPos, 20, FollowAttack.flags)
-  if not path then return end
-
-  local tileToUse = playerPos
-  for i, dir in ipairs(path) do
-    if i > 6 then break end
-    tileToUse = FollowAttack.getDirection(tileToUse, dir)
+macro(100, function()
+  if attkfollow == 1 then
+    show_attackfollow:setPosition({y = 295, x = 50})
+    show_attackfollow:setText('FOLLOW-ATTK')
+    show_attackfollow:setColor('white')
+  else
+    show_attackfollow:setText('')
   end
-
-  local tile = g_map.getTile(tileToUse)
-  if tile and tile:getTopUseThing() then
-    use(tile:getTopUseThing())
-  end
-end));
+end);
 UI.Separator()
 
 setDefaultTab ('Tools')
